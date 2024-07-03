@@ -1,7 +1,7 @@
 <script>
   import TextInput from "../elements/text-input.svelte";
   import { createList } from "$lib/store/todos.svelte";
-  import RadioInput from "../elements/radio-input.svelte";
+  import CheckboxInput from "../elements/checkbox-input.svelte";
 
   const list = createList();
 
@@ -26,7 +26,7 @@
   <p class="text-[20px] p-2">Aufgabe hinzufügen:</p>
   <div class="flex w-full justify-between">
     <TextInput />
-    <RadioInput />
+    <CheckboxInput />
     <button class="bg-slate-400 px-2 py-0 ml-2 text-white rounded-2xl"
       >hinzufügen</button
     >
