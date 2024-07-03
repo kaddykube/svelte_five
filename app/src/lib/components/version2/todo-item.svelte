@@ -1,4 +1,6 @@
 <script lang="ts">
+
+import type { Snippet } from 'svelte';
   class TodoItem {
     done = $state(false);
     text = $state("");
@@ -10,7 +12,7 @@
 
   type Props = {
     text: string;
-    snippetText: any;
+    snippetText: Snippet;
   };
 
   let { text, snippetText }: Props = $props();
