@@ -8,11 +8,15 @@
   list.push("item 2");
 </script>
 
-{#snippet todo(item)}
-<ToDoItem text={item} />
-<br/>
+{#snippet snippetText()}
+    <p>---</p>
 {/snippet}
 
+{#snippet todo(item)}
+    <ToDoItem text={item} {snippetText} />
+{/snippet}
+
+
 {#each list as item}
-{@render todo(item)}
+    {@render todo(item)}    
 {/each}

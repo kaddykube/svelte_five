@@ -10,11 +10,13 @@
 
   type Props = {
     text: string;
+    snippetText: any;
   };
 
-  let { text }: Props = $props();
+  let { text, snippetText }: Props = $props();
 
   const item = new TodoItem(text);
 </script>
 
 <p>{item.text}</p>
+{@render snippetText()}
