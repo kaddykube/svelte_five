@@ -1,14 +1,12 @@
 <script>
   import TextInput from "../elements/text-input.svelte";
   import { createList } from "$lib/store/todos.svelte";
-  import { onMount } from "svelte";
+  import RadioInput from "../elements/radio-input.svelte";
 
   const list = createList();
 
-  onMount(() => {
-    list.addItem("first on mount");
-    list.addItem("second on mount");
-  });
+  list.addItem("first on mount", "DEFAULT");
+  list.addItem("second on mount", "HEUTE");
 </script>
 
 <div class=" pt-[50px] w-1/3 font-libre">
@@ -18,7 +16,7 @@
       <li
         class="p-[10px] border-b-2 border-slate-100 flex justify-between w-full"
       >
-        {item}
+        {item.text}
         <button class="bg-slate-400 px-2 text-white rounded-2xl"
           >&#10003;</button
         >
@@ -26,5 +24,11 @@
     {/each}
   </ul>
   <p class="text-[20px] p-2">Aufgabe hinzufügen:</p>
-  <TextInput />
+  <div class="flex w-full justify-between">
+    <TextInput />
+    <RadioInput />
+    <button class="bg-slate-400 px-2 py-0 ml-2 text-white rounded-2xl"
+      >hinzufügen</button
+    >
+  </div>
 </div>
