@@ -1,7 +1,13 @@
+<script>
+  import Wrapper from "$lib/components/elements/wrapper.svelte";
+  import TodoList from "$lib/components/sections/todo-list.svelte";
+</script>
+
 <div class="w-[100vw] h-[100vh] flex items-center">
-  <div class="max-w-[2000px] w-full h-full">
-    <div class="flex w-full h-full flex-col items-center">
-      <h1 class="text-lime-500">Willkommen!</h1>
-    </div>
+  <div class="max-w-[2000px] w-full h-full pt-[100px]">
+    <Wrapper>
+      <h1 class="text-lime-500 text-[30px]">Komponenten mit Svelte 5 bauen!</h1>
+      <TodoList />
+    </Wrapper>
   </div>
 </div>
