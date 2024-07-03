@@ -6,7 +6,7 @@
   let list: Item[] = $derived(storelist.list);
 </script>
 
-<div class=" pt-[50px] w-1/3 font-libre">
+<div class=" pt-[50px]">
   <h2 class="text-[20px] p-2">heute zu erledigen</h2>
   <ol>
     {#if list}

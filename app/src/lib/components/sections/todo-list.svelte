@@ -9,7 +9,7 @@
   list.addItem("second on mount", "HEUTE");
 </script>
 
-<div class=" pt-[50px] w-1/3 font-libre">
+<div class=" pt-[50px]">
   <h2 class="text-[20px] p-2">Aufgabenliste</h2>
   <ul class="border-[1px] border-slate-500 rounded-md font-thin">
     {#each list.list as item}
