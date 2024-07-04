@@ -8,10 +8,16 @@ export function createList() {
     list = list;
   };
 
+  const removeItem = (index: number) => {
+    list.splice(index, 1);
+    list = list;
+  };
+
   return {
     get list() {
       return list;
     },
     addItem,
+    removeItem,
   };
 }

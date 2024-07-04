@@ -1,6 +1,7 @@
 <script lang="ts">
   import { type Item } from "$lib/store/todos.svelte";
   import type { Snippet } from "svelte";
+  import TextInput from "./inputs/text-input.svelte";
   type Props = {
     listObject: {
       readonly list: Item[];
@@ -10,17 +11,15 @@
   };
   let { listObject, listChildren }: Props = $props();
 
-  let count = $state(0);
   function clickFunc() {
-    count++;
-    listObject.addItem(`ITEM ${count}`);
+    listObject.addItem(`ITEM ${'value of input'}`);
   }
 </script>
-
     {@render listChildren()}
-<div class="flex">
+<div class="flex items-center ">
+<TextInput/>
   <button
-    class="capitalize rounded-[7px] p-2 mt-2 border shadow-md"
-    onclick={clickFunc}>item+</button
+    class="capitalize rounded-[7px] p-2 px-4 border shadow-md"
+    onclick={clickFunc}>+</button
   >
 </div>

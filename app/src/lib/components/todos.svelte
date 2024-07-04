@@ -11,12 +11,19 @@
 
  let listT = createList();
 
+ function remove(index: number){
+  listT.removeItem(index);
+ }
+
 </script>
 
 {#snippet listChildren()}
-  <div class="flex flex-row w-full flex-wrap gap-10">
-    {#each listT.list as item}
+  <div class="flex flex-col w-full gap-1">
+    {#each listT.list as item, index}
+    <div class="flex justify-between border-b-2 px-2 pb-1 border-gray-200 items-center">
       <p class="">{item.text}</p>
+      <button class="text-lime-500 border-2 w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => remove(index)}>-</button>
+    </div>
     {/each}
   </div>
 {/snippet}
