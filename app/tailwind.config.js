@@ -5,7 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        libre: ['"Mulish"', ...defaultTheme.fontFamily.sans],
+        mulish: ['"Mulish"', ...defaultTheme.fontFamily.sans],
+        roboto: ['"Roboto"', ...defaultTheme.fontFamily.sans],
       },
     },
   },
