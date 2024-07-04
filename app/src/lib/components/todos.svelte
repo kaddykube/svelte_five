@@ -11,19 +11,21 @@
 
  let listT = createList();
 
- let count = $state(0);
- function clickFunc(){
-  count++
-  listT.addItem(`ITEM ${count}`);
- }
-
 </script>
+
+{#snippet listChildren()}
+  <div class="flex flex-row w-full flex-wrap gap-10">
+    {#each listT.list as item}
+      <p class="">{item.text}</p>
+    {/each}
+  </div>
+{/snippet}
 
 {#snippet snippetContent(content, list)}
     {#if content === "report"}
-        <ToDosReport {list} listObject={listT}></ToDosReport>
+        <ToDosReport {listChildren}></ToDosReport>
     {:else if content === "admin"}
-        <ToDosAdmin {list}></ToDosAdmin>
+        <ToDosAdmin listObject={listT} {listChildren}></ToDosAdmin>
     {/if}
 {/snippet}
 
@@ -33,15 +35,15 @@
   {#if tabs && tabs.length > 0}
     <Tabs.Root
       value={tabs[0].trigger}
-      class=" rounded-lg border border-lime-300 shadow-md w-full p-[10px]"
+      class=" rounded-lg bg-white shadow-md w-full p-[10px] gradient-border"
     >
       <Tabs.List
-        class="rounded-9px  p-2 flex gap-2 shadow-md rounded-[7px] leading-[0.01em] shadow-mini-inset text-gray-400  font-mulish"
+        class="rounded-9px p-2 flex gap-2 shadow-md rounded-[7px] leading-[0.01em] shadow-mini-inset text-gray-400  font-mulish"
       >
         {#each tabs as tab}
           <Tabs.Trigger
             value={tab.trigger}
-            class="capitalize  rounded-[7px] py-4 px-8 border bg-lime-50 border-white data-[state=active]:text-white data-[state=active]:border-lime-300 data-[state=active]:bg-lime-500 data-[state=active]:shadow-md  "
+            class="capitalize  rounded-[7px] py-4 px-8 border bg-gray-50 border-white data-[state=active]:text-white data-[state=active]:bg-lime-500 data-[state=active]:shadow-md  "
             >{tab.trigger}</Tabs.Trigger
           >
         {/each}
@@ -53,9 +55,6 @@
           </div>
         </Tabs.Content>
       {/each}
-
-  <button  class="capitalize  rounded-[7px] p-2 mt-2 border shadow-md "
-   onclick={clickFunc}>item+</button>
     </Tabs.Root>
   {/if}
 </div>

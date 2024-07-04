@@ -1,21 +1,8 @@
 <script lang="ts">
-  import { type Item } from "$lib/store/todos.svelte";
+  import type { Snippet } from "svelte";
   type Props = {
-    list: Item[];
-    listObject: {
-      readonly list: Item[];
-      addItem: (text: string) => void;
-    };
+    listChildren: Snippet;
   };
-  let { list, listObject }: Props = $props();
-
-  let listT = $derived(listObject);
-
-  $effect(() => {
-    console.log("in report componente:", listT.list);
-  });
+  let { listChildren }: Props = $props();
 </script>
-
-{#each list as item}
-  <p class="text-green-400">{item.text}</p>
-{/each}
+    {@render listChildren()}

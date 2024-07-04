@@ -1,11 +1,26 @@
 <script lang="ts">
   import { type Item } from "$lib/store/todos.svelte";
+  import type { Snippet } from "svelte";
   type Props = {
-    list: Item[];
+    listObject: {
+      readonly list: Item[];
+      addItem: (text: string) => void;
+    };
+    listChildren: Snippet;
   };
-  let { list }: Props = $props();
+  let { listObject, listChildren }: Props = $props();
+
+  let count = $state(0);
+  function clickFunc() {
+    count++;
+    listObject.addItem(`ITEM ${count}`);
+  }
 </script>
 
-{#each list as item}
-  <p class="">{item.text}</p>
-{/each}
+    {@render listChildren()}
+<div class="flex">
+  <button
+    class="capitalize rounded-[7px] p-2 mt-2 border shadow-md"
+    onclick={clickFunc}>item+</button
+  >
+</div>
