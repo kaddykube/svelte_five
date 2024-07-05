@@ -13,29 +13,13 @@
   };
   let { listObject, children }: Props = $props();
 
-
   let status = $state(false);
 
-/*   function createInput() {
-    let input: string = $state("");
-
-    return {
-      get input() {
-        return input;
-      },
-      set input(text: string) {
-        input = text;
-      },
-    };
-  } */
-
   let input: string = $state("");
-
 
   function clickFunc() {
     listObject.addItem(`Task: ${input}`, status);
   }
-
 
 </script>
 <div>
@@ -46,9 +30,7 @@
   </div>
 <div class="flex items-center justify-end pt-2">
 
-  <!-- <TextInput bind:input={input}/> -->
-
-  <TextInput {input}/>
+  <TextInput bind:input={input}/>
 
   <div class="flex flex-col items-center pr-2">
     <Switch.Root

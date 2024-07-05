@@ -2,9 +2,7 @@
   type Props = {
     input: string;
   };
-  let { input }: Props = $props();
-
-  $inspect(input);
+  let { input = $bindable() }: Props = $props();
 </script>
 
 <input
