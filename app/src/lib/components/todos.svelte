@@ -3,23 +3,24 @@
   import ToDosAdmin from "$lib/components/todos-admin.svelte"
   import ToDosReport from "$lib/components/todos-report.svelte"
   import { createList, type Item } from "$lib/store/todos.svelte"
+  import { readonly } from "svelte/store";
 
   const tabs = [
     { trigger: "report", content: "report", desciption: "" },
     { trigger: "admin", content: "admin", desciption: "" },
   ];
 
- let listT = createList();
+ let listObject = createList();
 
  function remove(index: number){
-  listT.removeItem(index);
+  listObject.removeItem(index);
  }
 
 </script>
 
 {#snippet listChildren()}
   <div class="flex flex-col w-full gap-1">
-    {#each listT.list as item, index}
+    {#each listObject.list as item, index}
     <div class="flex justify-between border-b-2 px-2 pb-1 border-gray-200 items-center">
       <p class="">{item.text}</p>
       <button class="text-lime-500 border-2 w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => remove(index)}>-</button>
@@ -28,11 +29,35 @@
   </div>
 {/snippet}
 
-{#snippet snippetContent(content, list)}
+{#snippet listHead()}
+    <h1>This is my list</h1>
+{/snippet}
+
+{#snippet listRow(item, index, readonly)}
+
+<div class="flex justify-between border-b-2 px-2 pb-1 border-gray-200 items-center">
+  <p class="">{item.text}</p>
+  {#if !readonly}
+    <button class="text-lime-500 border-2 w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => remove(index)}>-</button>
+  {/if}
+</div>
+{/snippet}
+
+
+{#snippet tabContent(content)}
     {#if content === "report"}
-        <ToDosReport {listChildren}></ToDosReport>
+        <ToDosReport list={listObject.list}>
+          {@render listHead()}
+          {#each listObject.list as item, index}
+            {@render listRow(item, index, true)}
+          {/each}
+        </ToDosReport>
     {:else if content === "admin"}
-        <ToDosAdmin listObject={listT} {listChildren}></ToDosAdmin>
+        <ToDosAdmin listObject={listObject}>  
+          {@render listHead()}
+          {#each listObject.list as item, index}
+            {@render listRow(item, index, false)}
+          {/each}</ToDosAdmin>
     {/if}
 {/snippet}
 
@@ -58,7 +83,7 @@
       {#each tabs as tab}
         <Tabs.Content value={tab.trigger} class="w-full shadow-md pt-2 min-h-[300px]">
           <div class="p-2">
-            {@render snippetContent(tab.content, listT.list)}
+            {@render tabContent(tab.content)}
           </div>
         </Tabs.Content>
       {/each}

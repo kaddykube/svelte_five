@@ -7,15 +7,21 @@
       readonly list: Item[];
       addItem: (text: string) => void;
     };
-    listChildren: Snippet;
+    children: Snippet;
   };
-  let { listObject, listChildren }: Props = $props();
+  let { listObject, children }: Props = $props();
 
   function clickFunc() {
     listObject.addItem(`ITEM ${'value of input'}`);
   }
 </script>
-    {@render listChildren()}
+<div>
+  {#if children}
+  
+  {@render children()}
+  {/if}
+  
+  </div>
 <div class="flex items-center ">
 <TextInput/>
   <button

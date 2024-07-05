@@ -1,8 +1,5 @@
 <script lang="ts">
-  type Props = {
-    value: string;
-  };
-  let { value }: Props = $props();
+
 
   let makeText = function (def: string) {
     let myText = $state(def);

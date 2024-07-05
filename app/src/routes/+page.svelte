@@ -9,8 +9,8 @@
   //Report Todo
 </script>
 
-<div class="w-[100vw] h-fit flex flex-col items-center font-libre">
-  <div class="max-w-[600px] w-full h-full pt-[50px] flex items-center">
+<div class="w-[100vw] min-h-[80vh] flex items-center justify-center font-libre">
+  <div class="max-w-[600px] w-full">
     <FlexWrapper>
       <Todos />
     </FlexWrapper>
