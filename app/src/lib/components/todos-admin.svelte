@@ -16,7 +16,7 @@
 
   let status = $state(false);
 
-  function createInput() {
+/*   function createInput() {
     let input: string = $state("");
 
     return {
@@ -27,12 +27,13 @@
         input = text;
       },
     };
-  }
-  let input = createInput();
+  } */
+
+  let input: string = $state("");
 
 
   function clickFunc() {
-    listObject.addItem(`Task: ${input.input}`, status);
+    listObject.addItem(`Task: ${input}`, status);
   }
 
 
@@ -44,6 +45,8 @@
   
   </div>
 <div class="flex items-center justify-end pt-2">
+
+  <!-- <TextInput bind:input={input}/> -->
 
   <TextInput {input}/>
 
