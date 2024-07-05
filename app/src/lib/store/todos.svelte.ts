@@ -13,11 +13,17 @@ export function createList() {
     list = list;
   };
 
+  const setStatus = (index: number) => {
+    list[index].status = !list[index].status;
+    list = list;
+  };
+
   return {
     get list() {
       return list;
     },
     addItem,
     removeItem,
+    setStatus,
   };
 }
