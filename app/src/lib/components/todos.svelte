@@ -3,7 +3,6 @@
   import ToDosAdmin from "$lib/components/todos-admin.svelte"
   import ToDosReport from "$lib/components/todos-report.svelte"
   import { createList, type Item } from "$lib/store/todos.svelte"
-  import { readonly } from "svelte/store";
 
   const tabs = [
     { trigger: "report", content: "report", desciption: "" },
@@ -18,46 +17,30 @@
 
 </script>
 
-{#snippet listChildren()}
-  <div class="flex flex-col w-full gap-1">
-    {#each listObject.list as item, index}
-    <div class="flex justify-between border-b-2 px-2 pb-1 border-gray-200 items-center">
-      <p class="">{item.text}</p>
-      <button class="text-lime-500 border-2 w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => remove(index)}>-</button>
-    </div>
-    {/each}
-  </div>
-{/snippet}
 
 {#snippet listHead()}
-    <h1>This is my list</h1>
+    <h1 class="pb-2">List</h1>
 {/snippet}
 
-{#snippet listRow(item, index, readonly)}
+{#snippet listRow(item, index)}
 
 <div class="flex justify-between border-b-2 px-2 pb-1 border-gray-200 items-center">
-  <p class="">{item.text}</p>
-  {#if !readonly}
-    <button class="text-lime-500 border-2 w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => remove(index)}>-</button>
-  {/if}
+  <p class={`${item.status ? 'text-lime-500' : 'text-orange-700'}`}>{item.text}</p>
+  <button class="text-lime-500 border-2 w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => remove(index)}>-</button>
 </div>
 {/snippet}
 
 
 {#snippet tabContent(content)}
     {#if content === "report"}
-        <ToDosReport list={listObject.list}>
-          {@render listHead()}
-          {#each listObject.list as item, index}
-            {@render listRow(item, index, true)}
-          {/each}
+        <ToDosReport list={listObject.list} {listHead} {listRow}>
         </ToDosReport>
     {:else if content === "admin"}
         <ToDosAdmin listObject={listObject}>  
-          {@render listHead()}
           {#each listObject.list as item, index}
-            {@render listRow(item, index, false)}
-          {/each}</ToDosAdmin>
+              {@render listRow(item, index)}
+          {/each}
+        </ToDosAdmin>
     {/if}
 {/snippet}
 

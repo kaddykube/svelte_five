@@ -1,23 +1,18 @@
 <script lang="ts">
-
-
-  let makeText = function (def: string) {
-    let myText = $state(def);
-    return {
-      get text() {
-        return myText;
-      },
-      set text(v) {
-        myText = v;
-      },
-    };
+  type Props = {
+    input: { input: string };
   };
-  let text = makeText("");
+  let { input }: Props = $props();
+
+  let value = $state("");
+
+  $effect(() => {
+    input.input = value;
+  });
 </script>
 
-{text.text}
 <input
   class="border-2 border-gray-300 mr-2 rounded-lg p-2"
   type="text"
-  bind:value={text.text}
+  bind:value
 />
