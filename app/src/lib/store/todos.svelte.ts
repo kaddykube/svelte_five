@@ -5,17 +5,14 @@ export function createList() {
 
   const addItem = (text: string, status: boolean) => {
     list.push({ text: text, status: status });
-    list = list;
   };
 
   const removeItem = (index: number) => {
     list.splice(index, 1);
-    list = list;
   };
 
   const setStatus = (index: number) => {
     list[index].status = !list[index].status;
-    list = list;
   };
 
   return {

@@ -21,27 +21,23 @@
 
 </script>
 
-
 {#snippet listHead()}
     <h1 class="pb-2">List</h1>
-{/snippet}s
+{/snippet}
 
 {#snippet listRow(item, index)}
-
-<div class="flex justify-between border-b-2 px-2 pb-1 border-gray-200 items-center">
-  <p class={`${item.status && 'text-lime-500'}`}>{item.text}</p>
-  <button class="text-black border-2 w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => remove(index)}>-</button>
-</div>
+  <div class="flex justify-between border-b-[1px] px-2 pb-1 border-gray-200 items-center">
+    <p class={`${item.status && 'text-lime-500'}`}>{item.text}</p>
+    <button class="text-black border-[1px] w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => remove(index)}>-</button>
+  </div>
 {/snippet}
 
 {#snippet listRowOpen(item, index)}
-
-<div class="flex justify-between border-b-2 px-2 pb-1 border-gray-200 items-center">
-  <p class='text-orange-700'>{item.text}</p>
-  <button class="text-lime-500 border-2 w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => setStatus(index)}>&check;</button>
-</div>
+  <div class="flex justify-between border-b-[1px] px-2 pb-1 border-gray-200 items-center">
+    <p class=''>{item.text}</p>
+    <button class="text-lime-500 border-[1px] w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => setStatus(index)}>&check;</button>
+  </div>
 {/snippet}
-
 
 {#snippet tabContent(content)}
     {#if content === "report"}
@@ -55,8 +51,6 @@
         </ToDosAdmin>
     {/if}
 {/snippet}
-
-
 
 <div class="w-full">
   {#if tabs && tabs.length > 0}

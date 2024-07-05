@@ -23,15 +23,17 @@
 
 </script>
 <div>
+  
   {#if children}
+  <p class="w-full rounded-2xl bg-gray-50 p-2 my-2">alle Tasks</p>
   {@render children()}
   {/if}
   
   </div>
-<div class="flex items-center justify-end pt-2">
 
+  <p class="w-full rounded-2xl bg-gray-50 p-2 my-2 mt-4">Tasks hinzufügen</p>
+<div class="flex items-center justify-end pt-2 gap-4">
   <TextInput bind:input={input}/>
-
   <div class="flex flex-col items-center pr-2">
     <Switch.Root
     bind:checked={status}
