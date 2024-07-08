@@ -19,6 +19,10 @@
   listObject.setStatus(index);
  }
 
+ // filter list 
+
+ // 
+
 </script>
 
 {#snippet listHead()}

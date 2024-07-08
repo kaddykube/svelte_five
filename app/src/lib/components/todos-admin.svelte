@@ -3,6 +3,8 @@
   import type { Snippet } from "svelte";
   import TextInput from "./inputs/text-input.svelte";
   import { Switch, Label } from "bits-ui";
+  import RadioInputBits from "./inputs/radio-input-trafficLight.svelte";
+  import RadioInputTrafficLight from "./inputs/radio-input-trafficLight.svelte";
 
   type Props = {
     listObject: {
@@ -15,7 +17,11 @@
 
   let status = $state(false);
 
+  let trafficLight = $state('');
+  $inspect(trafficLight);
+
   let input: string = $state("");
+
 
   function clickFunc() {
     listObject.addItem(`Task: ${input}`, status);
@@ -47,6 +53,10 @@
     <Label.Root for="status" class="text-[12px] font-medium uppercase"
       >status</Label.Root
     >
+  </div>
+  <div class="flex flex-col items-center pr-2">
+    <RadioInputTrafficLight 
+    bind:input={trafficLight}/>
   </div>
   <button
     class="capitalize rounded-[7px] p-2 px-4 border shadow-md"
