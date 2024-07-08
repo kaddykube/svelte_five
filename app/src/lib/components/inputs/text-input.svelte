@@ -6,7 +6,7 @@
 </script>
 
 <input
-  class="border-2 border-gray-300 mr-2 rounded-lg p-2 w-full"
+  class="border border-gray-300 mr-2 rounded-xl p-2 w-full"
   type="text"
   bind:value={input}
 />

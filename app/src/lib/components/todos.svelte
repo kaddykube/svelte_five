@@ -25,10 +25,6 @@
 
 </script>
 
-{#snippet listHead()}
-    <h1 class="pb-2">List</h1>
-{/snippet}
-
 {#snippet listRow(item, index)}
   <div class="flex justify-between border-b-[1px] px-2 pb-1 border-gray-200 items-center">
     <p class={`${item.status && 'text-lime-500'}`}>{item.text}</p>
@@ -37,7 +33,7 @@
 {/snippet}
 
 {#snippet listRowOpen(item, index)}
-  <div class="flex justify-between border-b-[1px] px-2 pb-1 border-gray-200 items-center">
+  <div class="flex justify-between border-b-[1px] px-2 py-2 border-gray-200 items-center">
     <p class=''>{item.text}</p>
     <button class="text-lime-500 border-[1px] w-[22px] h-[30px] rounded-full text-center pb-2 hover:shadow-lg" onclick={() => setStatus(index)}>&check;</button>
   </div>
@@ -45,7 +41,7 @@
 
 {#snippet tabContent(content)}
     {#if content === "report"}
-        <ToDosReport list={listObject.list} {listHead} {listRow} {listRowOpen}>
+        <ToDosReport list={listObject.list} {listRow} {listRowOpen}>
         </ToDosReport>
     {:else if content === "admin"}
         <ToDosAdmin listObject={listObject}>  
@@ -74,10 +70,8 @@
         {/each}
       </Tabs.List>
       {#each tabs as tab}
-        <Tabs.Content value={tab.trigger} class="w-full shadow-md pt-2 min-h-[300px]">
-          <div class="p-2">
+        <Tabs.Content value={tab.trigger} class="w-full shadow-md h-auto min-h-[300px] p-2">
             {@render tabContent(tab.content)}
-          </div>
         </Tabs.Content>
       {/each}
     </Tabs.Root>

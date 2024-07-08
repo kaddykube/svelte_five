@@ -1,19 +1,28 @@
 <script lang="ts">
   import { type Snippet } from "svelte";
-  import { type Item} from "$lib/store/todos.svelte"
+  import { type Item, Review} from "$lib/store/todos.svelte"
+  import ReviewFilter from "./filter/review-filter.svelte";
+
 
 type Props = {
   list: Item[],
-  listHead: Snippet,
   listRow: (prop: Item, index: number) => any,
   listRowOpen: (prop: Item, index: number) => any,
 }
-  let { list, listHead, listRow, listRowOpen }: Props = $props();
+  let { list, listRow, listRowOpen }: Props = $props();
+
+  $inspect(list);
+
+  let reviewFilter: Review | undefined = $state(undefined);
+
+
 </script>
 <div>
-{#if listHead && listRow}
-  {@render listHead()}
-  <p class="w-full rounded-2xl bg-gray-50 p-2 my-2">offene Tasks</p>
+{#if  listRow}
+  <p class="w-full h-fit rounded-2xl bg-gray-50 p-2 my-2">offene Tasks</p>
+  <div class="justify-end flex w-full">
+  <ReviewFilter bind:input={reviewFilter}/>
+</div>
   {#each list as item, index}
     {#if !item.status}
       {@render listRowOpen(item, index)}
@@ -26,6 +35,5 @@ type Props = {
     {/if}
   {/each}
 {/if}
-
 </div>
 
