@@ -12,19 +12,22 @@
     {
       value: Review.AMAZING,
       style: "text-lime-600",
-      styleBorder: "data-[state=checked]:border-lime-300",
+      styleBorder:
+        "data-[state=checked]:border-lime-200 data-[state=checked]:bg-lime-400",
       label: "&#9679;",
     },
     {
       value: Review.AVERAGE,
       style: "text-yellow-600",
-      styleBorder: "data-[state=checked]:border-yellow-200",
+      styleBorder:
+        "data-[state=checked]:border-yellow-200 data-[state=checked]:bg-yellow-300",
       label: "&#9679;",
     },
     {
       value: Review.TERRIBLE,
       style: "text-rose-900",
-      styleBorder: "data-[state=checked]:border-rose-300",
+      styleBorder:
+        "data-[state=checked]:border-rose-200 data-[state=checked]:bg-rose-300",
       label: "&#9679;",
     },
   ];

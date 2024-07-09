@@ -4,9 +4,10 @@
 
   type Props = {
     input: Review | undefined;
+    clickFunc: () => void;
   };
 
-  let { input = $bindable() }: Props = $props();
+  let { input = $bindable(), clickFunc }: Props = $props();
 
   const themes = [
     { value: Review.AMAZING, label: Review.AMAZING },
@@ -14,26 +15,22 @@
     { value: Review.TERRIBLE, label: Review.TERRIBLE },
   ];
 
-  let selected = $state({ value: undefined});
+  let selected = $state({ value: input });
 
-  $effect(()=>{
+  $effect(() => {
     input = selected.value;
-  })
-
+  });
 </script>
 
-<Select.Root items={themes}  bind:selected={selected}>
-  <Select.Trigger  
+<Select.Root items={themes} bind:selected>
+  <Select.Trigger
     class="h-fit w-[140px] inline-flex items-center rounded-lg border  bg-white px-[10px] "
     aria-label="filtern"
   >
-    <Select.Value class="" placeholder="filtern"
-   />
-    <div class="ml-auto">
-      &#10549;
-    </div>
+    <Select.Value class="" placeholder="filtern" />
+    <div class="ml-auto">&#10549;</div>
   </Select.Trigger>
-  <Select.Content 
+  <Select.Content
     class="w-full rounded-xl border border-muted bg-white px-1 py-3 shadow-sm"
   >
     {#each themes as theme}
@@ -45,3 +42,7 @@
     {/each}
   </Select.Content>
 </Select.Root>
+<button
+  class="text-black border-[1px] rounded-full text-center px-2 ml-1 hover:shadow-lg"
+  onclick={clickFunc}>&#x232B;</button
+>
