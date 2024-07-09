@@ -1,7 +1,6 @@
 <script lang="ts">
   import { Select } from "bits-ui";
   import { Review } from "$lib/store/todos.svelte";
-  import Icon from "@iconify/svelte";
 
   type Props = {
     input: Review | undefined;
@@ -14,20 +13,27 @@
     { value: Review.AVERAGE, label: Review.AVERAGE },
     { value: Review.TERRIBLE, label: Review.TERRIBLE },
   ];
+
+  let selected = $state({ value: undefined});
+
+  $effect(()=>{
+    input = selected.value;
+  })
+
 </script>
 
-<Select.Root items={themes}>
-  <Select.Trigger
-    bind:value={input}
+<Select.Root items={themes}  bind:selected={selected}>
+  <Select.Trigger  
     class="h-fit w-[140px] inline-flex items-center rounded-lg border  bg-white px-[10px] "
     aria-label="filtern"
   >
-    <Select.Value class="" placeholder="filtern" />
+    <Select.Value class="" placeholder="filtern"
+   />
     <div class="ml-auto">
-      <Icon icon="fluent:chevron-up-down-16-regular" />
+      &#10549;
     </div>
   </Select.Trigger>
-  <Select.Content
+  <Select.Content 
     class="w-full rounded-xl border border-muted bg-white px-1 py-3 shadow-sm"
   >
     {#each themes as theme}

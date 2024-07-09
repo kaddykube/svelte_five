@@ -13,19 +13,11 @@ type Props = {
 
   let reviewFilter: Review | undefined = $state(undefined);
 
-  let filteredList = $derived(list.filter((item)=> {
-    
-if(reviewFilter){
-  return reviewFilter === item.review
-} 
-  return item;
-
-  }));
-
-
+  let filteredList = $derived(list.filter((item) => { if(reviewFilter){return item.review === reviewFilter} return item}));
 </script>
 
 <div>
+
 {#if  listRow}
   <p class="w-full h-fit rounded-2xl bg-gray-50 p-2 my-2">offene Tasks</p>
   <div class="justify-end flex w-full">
@@ -43,5 +35,6 @@ if(reviewFilter){
     {/if}
   {/each}
 {/if}
+
 </div>
 
