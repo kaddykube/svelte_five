@@ -1,16 +1,16 @@
-export type Item = { text: string; status: boolean };
-
 export enum Review {
   AMAZING = "amazing",
   AVERAGE = "average",
   TERRIBLE = "terrible",
 }
 
+export type Item = { text: string; status: boolean; review: Review };
+
 export function createList() {
   let list: Item[] = $state([]);
 
   const addItem = (text: string, status: boolean, review: Review) => {
-    list.push({ text: text, status: status });
+    list.push({ text: text, status: status, review: review });
   };
 
   const removeItem = (index: number) => {

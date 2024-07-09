@@ -18,13 +18,10 @@
  function setStatus(index: number){
   listObject.setStatus(index);
  }
-
- // filter list 
-
- // 
-
+ 
 </script>
 
+<!-- display listitem as row | just show completed tasks -->
 {#snippet listRow(item, index)}
   <div class="flex justify-between border-b-[1px] px-2 pb-1 border-gray-200 items-center">
     <p class={`${item.status && 'text-lime-500'}`}>{item.text}</p>
@@ -32,6 +29,7 @@
   </div>
 {/snippet}
 
+<!-- display listitem as row | just show open tasks -->
 {#snippet listRowOpen(item, index)}
   <div class="flex justify-between border-b-[1px] px-2 py-2 border-gray-200 items-center">
     <p class=''>{item.text}</p>
@@ -39,6 +37,7 @@
   </div>
 {/snippet}
 
+<!-- display list report or admin page -->
 {#snippet tabContent(content)}
     {#if content === "report"}
         <ToDosReport list={listObject.list} {listRow} {listRowOpen}>
@@ -52,6 +51,7 @@
     {/if}
 {/snippet}
 
+<!-- Tabs -->
 <div class="w-full">
   {#if tabs && tabs.length > 0}
     <Tabs.Root
@@ -59,12 +59,12 @@
       class=" rounded-lg bg-white shadow-md w-full p-[10px] gradient-border"
     >
       <Tabs.List
-        class="rounded-9px p-2 flex gap-2 shadow-md rounded-[7px] leading-[0.01em] shadow-mini-inset text-gray-400  font-mulish"
+        class="rounded-lg p-2 flex gap-2 shadow-md  leading-[0.01em] text-gray-400  font-mulish"
       >
         {#each tabs as tab}
           <Tabs.Trigger
             value={tab.trigger}
-            class="capitalize  rounded-[7px] py-4 px-8 border bg-gray-50 border-white data-[state=active]:text-white data-[state=active]:bg-lime-500 data-[state=active]:shadow-md  "
+            class="capitalize  rounded-lg py-4 px-8 border bg-gray-50 border-white data-[state=active]:text-white data-[state=active]:bg-lime-500 data-[state=active]:shadow-md  "
             >{tab.trigger}</Tabs.Trigger
           >
         {/each}
